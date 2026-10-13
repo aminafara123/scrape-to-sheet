@@ -30,7 +30,17 @@ flowchart LR
     H[cron / n8n Schedule] -. triggers .-> B
 ```
 
-## Quickstart
+## Install
+
+```bash
+pipx install git+https://github.com/aminafara123/scrape-to-sheet
+scrape-to-sheet configs/books.yaml          # add [sheets] extra for the Google Sheets push
+```
+
+For the optional `--sheet` push: `pipx install "git+https://github.com/aminafara123/scrape-to-sheet[sheets]"`.
+From a local clone you can also just `pip install .` (or `.[sheets]`).
+
+## Quickstart (clone + make)
 
 ```bash
 # 1) install
