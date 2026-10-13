@@ -1,0 +1,53 @@
+# Example config: scrape the bundled offline sample site (no internet needed).
+# Paths are relative to THIS file's folder, so it runs from any directory.
+#
+# To scrape a real site instead, point `source.start_url` at a real URL and
+# adjust the selectors. These selectors already match books.toscrape.com, so
+# swapping start_url to https://books.toscrape.com/ would scrape it for real.
+
+name: books
+
+source:
+  start_url: ../sample_site/page1.html
+
+# Pagination: follow the "next" link until it runs out (max_pages is a safety cap).
+# Alternatively, use a URL template instead of a next-link:
+#   pagination:
+#     url_template: ../sample_site/page{page}.html
+#     pages: 3
+pagination:
+  next_selector: a.next
+  max_pages: 10
+
+# One record per element matching this selector.
+row_selector: article.product_pod
+
+# Each field: a CSS selector, an optional attr to read (else text),
+# and an optional type (price | number | int | text).
+fields:
+  title:
+    selector: h3 a
+    attr: title
+  price:
+    selector: p.price_color
+    type: price
+  rating:
+    selector: p.star-rating
+    type: int
+  availability:
+    selector: p.availability
+    type: text
+
+# Output column order (subset/reorder of fields).
+columns: [title, price, rating, availability]
+
+# Drop duplicate rows sharing this field's value.
+dedupe_key: title
+
+# Default CSV output path (overridable with --out).
+output: out/data.csv
+
+# Optional Google Sheets push (only used with --sheet; see README). Example:
+# sheet:
+#   id: "your-spreadsheet-id"
+#   worksheet: "Sheet1"

@@ -1,0 +1,11 @@
+requests>=2.31,<3
+beautifulsoup4>=4.12,<5
+PyYAML>=6,<7
+pytest>=8,<9
+
+# Optional — only for the Google Sheets push (`--sheet`). Not needed to run or test:
+# gspread>=6,<7
+# google-auth>=2,<3
+
+# Optional — swap in a Playwright backend for JS-heavy sites (see README):
+# playwright>=1.40,<2
